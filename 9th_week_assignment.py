@@ -25,15 +25,15 @@ class Department:
     staff_count: int = field(init = False, default = 0)
 
     def __post_init__(self):
-        self._refresh()
+        self._update_staff_count()
 
-    def _refresh(self):
+    def _update_staff_count(self):
         self.staff_count = len(self.employees)
 
     def hire(self, employee: Employee) -> bool:
         if self.staff_count < self.headcount:
             self.employees.append(employee)
-            self._refresh()
+            self._update_staff_count()
             return True
         return False
     
